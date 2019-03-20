@@ -1,25 +1,49 @@
 class Solution:
     def reachNumber(self, target: int) -> int:
-        add_sum = 0
-        step = 1
         target = abs(target)
-        while target > add_sum:
-            # 求出当前step时候add_sum的最大值
-            add_sum = step * (step + 1) / 2
-            if target == add_sum:
-                return step
+        step = 1
+        is_odd = target % 2
+        # 判断step到哪一步大于target（或者等于）
+        while step * (step + 1) / 2 < target:
             step += 1
-        # 将add_sum返回到比n小的状态，减去（step-1）的值（由于while里一直加1，直到n<=add_sum才跳出，实际上add_sum最后一个值是step-1
-        step -= 1
-        add_sum -= step
-        # 返回step加到的真实情况
-        step -= 1
-        step += (target - add_sum) * 2
-        return int(step)
+        # 等于时return step
+        if step * (step + 1) / 2 == target:
+            return step
+        # 现在的step已经超过了target
+        # target是奇数，判断step是不是除以4余几，余1或2均可，余3需要+2让其余1，余0需要+1让其余1
+        if is_odd == 1:
+            if step % 4 == 1 or step % 4 == 2:
+                return step
+            elif step % 4 == 3:
+                return step + 2
+            elif step % 4 == 0:
+                return step + 1
+
+        # target是偶数，判断step是不是除以4余几，余3或4均可，余2需要+1让其余3，余1需要+2让其余3
+        else:
+            if step % 4 == 3 or step % 4 == 0:
+                return step
+            elif step % 4 == 2:
+                return step + 1
+            elif step % 4 == 1:
+                return step + 2
+def get_next_set(l, num):
+    next_set = set()
+    for i in l:
+        next_set.add(i - num)
+        next_set.add(i + num)
+    return next_set
 
 
 if __name__ == '__main__':
-    n = -1
+    n = 12
+    n = abs(n)
+    l = set()
+    l.add(0)
+    for i in range(1, n):
+        l = get_next_set(l, i)
+        print(sorted(l))
+
     s = Solution()
     print(s.reachNumber(n))
 
