@@ -10,7 +10,7 @@ class Solution1:
                 return False
         return True
 
-
+# 直接判断翻转过来的字符串是不是一样
 class Solution:
     def isPalindrome(self, x: 'int') -> 'bool':
         if x < 0:
