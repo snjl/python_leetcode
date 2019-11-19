@@ -11,7 +11,6 @@ class Solution:
 if __name__ == '__main__':
     x = Solution()
 
-    A = [0,10]
+    A = [0, 10]
     K = 2
     print(x.smallestRangeI(A, K))
-
