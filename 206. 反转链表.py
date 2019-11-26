@@ -41,7 +41,8 @@ class Solution:
         q.next = p
 
         return q
-        # 递归版本
+
+    # 递归版本
     def reverseList2(self, head):
         """
         :type head: ListNode
@@ -51,7 +52,7 @@ class Solution:
         if(head==None or head.next==None):
             return head
         # 这里的cur就是最后一个节点
-        cur = self.reverseList(head.next)
+        cur = self.reverseList2(head.next)
         # 这里请配合动画演示理解
         # 如果链表是 1->2->3->4->5，那么此时的cur就是5
         # 而head是4，head的下一个是5，下下一个是空
