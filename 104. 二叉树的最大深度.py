@@ -41,9 +41,6 @@ import collections
 
 # 方法三 BFS
 class Solution2:
-    """
-    迭代法
-    """
 
     def maxDepth(self, root):
         depth = 0
