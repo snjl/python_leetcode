@@ -1,4 +1,6 @@
 # Definition for a binary tree node.
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -35,7 +37,35 @@ class Solution:
                 stack.append((tree_node.right, cur_depth + 1))  # 将该结点的右孩子结点及其对应深度压入栈中
         return max_depth
 
+import collections
 
+# 方法三 BFS
+class Solution2:
+    """
+    迭代法
+    """
+
+    def maxDepth(self, root):
+        depth = 0
+        if root is None:
+            return depth
+        queue = collections.deque()
+        queue.appendleft(root)
+        while len(queue) != 0:
+            reached = False
+            depth += 1
+            queue_len = len(queue)
+            for i in range(queue_len):
+                cursor = queue.pop()
+                if cursor is None:
+                    break
+                if cursor.left:
+                    queue.appendleft(cursor.left)
+                if cursor.right:
+                    queue.appendleft(cursor.right)
+            if reached is True:
+                break
+        return depth
 
 
 if __name__ == '__main__':
