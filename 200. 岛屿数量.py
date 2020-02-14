@@ -2,7 +2,8 @@ from queue import Queue
 
 
 class Solution:
-    def numIslands(self, grid):
+    # 广度优先
+    def numIslands1(self, grid):
         count = 0
         if len(grid) == 0:
             return count
@@ -31,6 +32,29 @@ class Solution:
                         else:
                             continue
                         print(q.queue)
+        return count
+
+    # 深度优先
+    def numIslands(self, grid):
+        count = 0
+        if len(grid) == 0:
+            return 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':
+                    count += 1
+                    stack = list()
+                    stack.append((i, j))
+                    while stack:
+                        x, y = stack.pop()
+                        if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == '1':
+                            grid[x][y] = 0
+                            stack.append((x + 1, y))
+                            stack.append((x - 1, y))
+                            stack.append((x, y + 1))
+                            stack.append((x, y - 1))
+                        else:
+                            continue
         return count
 
 
