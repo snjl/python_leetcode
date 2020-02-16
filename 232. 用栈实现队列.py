@@ -86,6 +86,26 @@ class MyQueue2(object):
         """
         return len(self.instack) == 0 and len(self.outstack) == 0
 
+class CQueue:
+
+    def __init__(self):
+        self.s1 = list()
+        self.s2 = list()
+
+    def appendTail(self, value: int) -> None:
+        self.s1.append(value)
+
+    def deleteHead(self) -> int:
+        if len(self.s2) == 0:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        if len(self.s2) != 0:
+            return self.s2.pop()
+        else:
+            return -1
+
+
+
 if __name__ == '__main__':
     x = 5
     obj = MyQueue()
