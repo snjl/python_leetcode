@@ -5,19 +5,35 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return root
+
         if root.left:
             self.invertTree(root.left)
         if root.right:
             self.invertTree(root.right)
 
-        if root.right and root.left:
-            root.right.val,root.left.val = root.left.val,root.right.val
-        elif root.right:
-            root.left = TreeNode(root.right.val)
-            root.right = None
-        elif root.left:
-            root.right = TreeNode(root.left.val)
-            root.left= None
+        # 放在两个if上面也可以，相当于先交换再去递归
+        root.left,root.right = root.right,root.left
+
+        return root
+
+    def invertTree2(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return root
+        import collections
+        q = collections.deque()
+        q.appendleft(root)
+        while q:
+            t = q.pop()
+            t.left,t.right = t.right,t.left
+            if t.left:
+                q.appendleft(t.left)
+            if t.right:
+                q.appendleft(t.right)
+
+
         return root
