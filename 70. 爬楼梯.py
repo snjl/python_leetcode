@@ -5,3 +5,5 @@ class Solution:
         for _ in range(3, n):         # 自底向上递推 F(n)=F(n-1)+F(n-2)
             i, j = j, i + j           # 每次仅保留前两个值，依次往后推算
         return i + j if n > 2 else n  # 注意当n=1,n=2时的情况
+
+
