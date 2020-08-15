@@ -41,7 +41,7 @@ def binary_search2(lis, num):
     right = len(lis) - 1
     while left <= right:  # 循环条件
         mid = (left + right) // 2  # 获取中间位置，数字的索引（序列前提是有序的）
-        if num < lis[mid]:  # 如果查询数字比中间数字小，那就去二分后的左边找，
+        if num < lis[mid]:  # 如果查询数字比中间数字小，那就去二分后的左边找
             right = mid - 1  # 来到左边后，需要将右变的边界换为mid-1
         elif num > lis[mid]:  # 如果查询数字比中间数字大，那么去二分后的右边找
             left = mid + 1  # 来到右边后，需要将左边的边界换为mid+1
@@ -52,4 +52,5 @@ def binary_search2(lis, num):
 
 if __name__ == '__main__':
     lis = [2, 4, 5, 12, 14, 23]
-    print(binary_search(lis, 0, len(lis) - 1, 4))
+    # print(binary_search(lis, 0, len(lis) - 1, 4))
+    print(binary_search2(lis, 5))
